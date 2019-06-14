@@ -8,7 +8,7 @@ require_once('./myid.php');
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>IIJLab TimeCloud</title>
+		<title>LabTimes</title>
 
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -64,7 +64,7 @@ require_once('./myid.php');
 
 						break;
 					case 2:
-						/*
+
 						if(empty($_POST['userID']) && empty($_POST['userStatus'])){
 							header("Location: index.php");
 						}
@@ -119,7 +119,7 @@ require_once('./myid.php');
 							$stmt->execute();
 
 						}
-						*/
+
 						echo '<br><div class="center">';
 						echo '<i class="large material-icons checkColor">check</i>';
 						echo '<h2>完了</h2><br>';
