@@ -8,7 +8,7 @@ require_once('./myid.php');
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Lab TimeCloud</title>
+		<title>IIJLab TimeCloud</title>
 
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -64,8 +64,9 @@ require_once('./myid.php');
 
 						break;
 					case 2:
+						/*
 						if(empty($_POST['userID']) && empty($_POST['userStatus'])){
-							header("Location: lab.php");
+							header("Location: index.php");
 						}
 						$strcode = array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8mb4'");
 						try {
@@ -95,13 +96,14 @@ require_once('./myid.php');
 							$stmt->bindParam(':userID', $_POST['userID'], PDO::PARAM_INT);
 							$stmt->execute();
 
-							$query = "INSERT INTO History (UserID, Date, InTime, OutTime, WorkTime, WorkType) VALUES (:userID, :date, :inTime, :outTime, :workTime, :workType)";
+							$query = "INSERT INTO History (UserID, Date, InTime, OutTime, WorkTime, WorkType, Month) VALUES (:userID, :date, :inTime, :outTime, :workTime, :workType, :nowMonth)";
 							$stmt = $dbh->prepare($query);
 							$stmt->bindParam(':userID', $_POST['userID'], PDO::PARAM_INT);
 							$stmt->bindParam(':date', date('Y/m/d'), PDO::PARAM_STR);
 							$stmt->bindParam(':inTime', $InTime, PDO::PARAM_STR);
 							$stmt->bindParam(':outTime', date('H:i'), PDO::PARAM_STR);
 							$stmt->bindParam(':workTime', $_POST['workTime'], PDO::PARAM_STR);
+							$stmt->bindParam(':nowMonth', date('m'), PDO::PARAM_STR);
 
 							$insertData = "";
 							$typeCounter = count($_POST['workType']);
@@ -117,22 +119,18 @@ require_once('./myid.php');
 							$stmt->execute();
 
 						}
+						*/
+						echo '<br><div class="center">';
+						echo '<i class="large material-icons checkColor">check</i>';
+						echo '<h2>完了</h2><br>';
 
 						if($_POST['userStatus'] == 0){
-	                                                echo '
-								<h2>完了</h2>
-                	                                        <h4>入室情報の登録が完了しました。</h4>
-								<h5>3秒後に最初の画面に戻ります。</h5>
-								<META http-equiv="Refresh" content="3;URL=lab.php">
-                                	                ';
+	                                                echo '<h4>入室情報の登録が完了しました。</h4>';
 						}else{
-							echo '
-                                                                <h2>完了</h2>
-                                                                <h4>退室情報の登録が完了しました。本日もお疲れ様でした。</h4>
-                                                                <h5>3秒後に最初の画面に戻ります。</h5>
-                                                                <META http-equiv="Refresh" content="3;URL=lab.php">
-							';
+							echo '<h4>退室情報の登録が完了しました。本日もお疲れ様でした。</h4>';
 						}
+						echo '<br><h5>3秒後に最初の画面に戻ります。</h5>';
+						echo '<META http-equiv="Refresh" content="3;URL=index.php"></div>';
                                                 break;
 				}
 			?>
