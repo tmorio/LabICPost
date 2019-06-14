@@ -2,7 +2,7 @@
 	<nav>
 		<div class="nav-wrapper black-text">
 			<!-- ロゴ -->
-			<a href="dashboard.php"><img class="logo-image" src="img/logo.png"></a>
+			<img class="logo-image" src="img/logo.png">
 			<ul class="right">
 					<?php
 					if(!empty($_SESSION['userName'])){
