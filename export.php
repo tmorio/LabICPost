@@ -32,7 +32,7 @@ require_once './myid.php'; ?>
 		try {
 			$dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_ID, DB_PASS, $strcode);
 			$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		 catch (PDOException $e) {
+		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}
 		$query = 'SELECT * FROM Users';
