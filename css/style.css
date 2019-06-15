@@ -1,195 +1,74 @@
-html, body{
-	height: 100%;
+html, body {
+  height: 100%;
 }
+
 nav {
-	background-color: #cfd8dc;
+  background-color: #cfd8dc;
 }
 
 img.logo-image {
-	height: 58px;
-}
-
-.footer {
-	background-color: #263238;
-	color: #ccccdd;
+  height: 58px;
 }
 
 @media only screen and (min-width: 601px) {
-	img.logo-image {
-		height: 66px;
-	}
-}
-.menu-card {
-	padding-bottom: 10px;
-}
-.menu-content {
-	display: inline-block;
-	width: 200px;
-	height: 200px;
-	max-height: 200px;
-	max-width: 200px;
-	padding: 25px;
-}
-.flexbox{
-	display: flex;
-}
-.flex-right{
-	margin-left: auto;
-}
-.marg{
-	margin-left:10px;
-}
-.clearfix:after{
-	content: "";
-	clear: both;
-	display: block;
-}
-#mapSetting {
-    width: 100%;
-    height: 65vh;
+  img.logo-image {
+    height: 66px;
+  }
 }
 
-.checkColor{
-    color:#0074f9;
+.checkColor {
+  color: #0074f9;
 }
 
 .cardProfile {
-    display: inline-block;
-    width: 280px;
-    margin: 15px;
-    color:#fff;
-    border-radius: 5px;
-    background-color: #09ba00;
-    box-shadow: 0 3px 6px #ccc;
+  display: inline-block;
+  width: 280px;
+  margin: 15px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #09ba00;
+  box-shadow: 0 3px 6px #ccc;
 }
 
 .cardProfileOn {
-    display: inline-block;
-    width: 280px;
-    margin: 15px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 3px 6px #ccc;
+  display: inline-block;
+  width: 280px;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px #ccc;
 }
+
 .boxProfile {
-    display: flex;
-    font-size:25px;
+  display: flex;
+  font-size: 25px;
 }
+
 .iconBox {
-    width: 68px;
-    height: 68px;
-    margin: 10px;
-    border-radius: 5px;
-    object-fit: cover;
+  width: 68px;
+  height: 68px;
+  margin: 10px;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
-.dashboardTitle {
-    font-family: arial,sans-serif;
-    font-size: 3em;
-    font-weight: bolder;
-    color: #ffffff;
-    width: 100%;
-    margin: 5% auto;
-    max-width: 100vw;
-    text-align: center;
-}
-
-.mapBoard {
-     display:grid;
-     grid-template-columns: 1.0fr 1.8fr ;
-}
-
-.infoTitle {
-    font-size: 1.5em;
+.typeSelect {
+  display: grid;
+  grid-template-columns: 1.0fr 1.0fr;
 }
 
 .wizardInfo {
-    padding: 15px;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    -ms-overflow-style:none;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
 }
 
-.wizardInfo img{
-    max-width: 70%;
+.wizardInfo img {
+  max-width: 70%;
 }
 
-.wizardInfo::-webkit-scrollbar{
-    display:none;
-}
-
-.menuIcon {
-    font-size: 30px;
-}
-
-.listOutput {
-   margin:20px 15vw 0;
-}
-
-.listButton {
-  margin: 0 0 0 auto;
-}
-
-.listTitle {
-    font-size: 25px;
-    font-weight: bolder;
-    vertical-align:middle;
-    color: #ffffff;
-    margin: 0 10px 0 20px;
-}
-
-.listDetail {
-    background:#ffffff;
-}
-
-.editDevice {
-    font-size: 25px;
-}
-
-.editError {
-    font-size: 25px;
-    font-weight: bolder;
-    color: #ffffff;
-    margin:0 13vw 0;
-}
-
-.deleteCheck {
-    width: 100%;
-    font-size: 25px;
-    font-weight: bolder;
-    text-align:center;
-    margin: 10vh 0 0;
-    color: #ffffff;
-}
-
-.buttonH {
-    text-align: center;
-    margin: 0 auto;
-}
-
-.wideControl {
-    width: 100%;
-}
-
-.settingInfo {
-    padding: 15px 10vw 0;
-}
-
-.graphArea {
-    margin: 20px 10vw 20px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    padding: 10px;
-}
-
-.prog {
-	float:right;
-	margin-left:10px;
-	margin-top:-0.7rem;
-	margin-right:-10px;
-}
-
-.coltag{;
-	float:left !important;
+.wizardInfo::-webkit-scrollbar {
+  display: none;
 }
