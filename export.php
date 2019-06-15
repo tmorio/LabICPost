@@ -1,14 +1,10 @@
 <?php
-session_start();
-
-require_once('./myid.php');
-
-?>
+require_once './myid.php'; ?>
 <!doctype html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>IIJLab TimeCloud - Export</title>
+		<title>LabTimes - Export</title>
 
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -17,46 +13,43 @@ require_once('./myid.php');
 		<script type="text/javascript" src="js/materialize.min.js"></script>
 		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
-                        $(document).ready(function(){
-                                $('.modal').modal();
-                        });
+			$(document).ready(function(){
+				$('.modal').modal();
+			});
 		</script>
 	</head>
 	<body>
-	<?php require_once('./header.php'); ?>
+	<?php require_once './header.php'; ?>
 	<div class="deviceAdd">
 		<!-- 設定分類一覧表示 -->
 		<div class="wizardInfo">
 	<?php
-						echo '
-							<h3>Export to CSV</h3>
-							記録ダウンロードする対象ユーザを選択して下さい。<br>
-
-						';
-                                                $strcode = array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8mb4'");
-                                                try {
-                                                        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_ID, DB_PASS, $strcode);
-                                                        $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                                                } catch (PDOException $e) {
-                                                        echo $e->getMessage();
-						}
-						$query = "SELECT * FROM Users";
-						$stmt = $dbh->prepare($query);
-						$stmt->execute();
-
-						foreach($stmt as $data){
-							echo '<a class="modal-trigger" href="#nowAccount" onclick="selectUser(' . $data['ID'] . ')">';
-							echo '<div class="cardProfileOn"><div class="boxProfile">';
-							if(empty($data['PhotoName'])){
-								echo '<img src="img/default.jpg" class="iconBox">';
-							}else{
-								echo '<img src="img/users/' . $data['PhotoName'] . '.jpg" class="iconBox">';
-							}
-							echo '<div><p>&nbsp;&nbsp;' . $data['Name'] . '</p></div>';
-							echo '</div></div></a>';
-						}
-
-			?>
+		echo '
+			<h3>Export to CSV</h3>
+			記録ダウンロードする対象ユーザを選択して下さい。<br>
+		';
+		$strcode = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET 'utf8mb4'");
+		try {
+			$dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_ID, DB_PASS, $strcode);
+			$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+		 catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+		$query = 'SELECT * FROM Users';
+		$stmt = $dbh->prepare($query);
+		$stmt->execute();
+		foreach ($stmt as $data) {
+			echo '<a class="modal-trigger" href="#nowAccount" onclick="selectUser('.$data['ID'].')">';
+			echo '<div class="cardProfileOn"><div class="boxProfile">';
+			if (empty($data['PhotoName'])) {
+				echo '<img src="img/default.jpg" class="iconBox">';
+			} else {
+				echo '<img src="img/users/'.$data['PhotoName'].'.jpg" class="iconBox">';
+			}
+			echo '<div><p>  '.$data['Name'].'</p></div>';
+			echo '</div></div></a>';
+		}
+	?>
 
 		</div>
 	</div>
@@ -91,4 +84,3 @@ require_once('./myid.php');
 		</footer>
 	</body>
 </html>
-
