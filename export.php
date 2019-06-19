@@ -11,6 +11,7 @@ require_once './myid.php'; ?>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('.modal').modal();
