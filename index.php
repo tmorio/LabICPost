@@ -13,6 +13,7 @@ require_once('./myid.php');
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('.modal').modal();
@@ -144,10 +145,16 @@ require_once('./myid.php');
 					messageTitle.innerHTML = '<h5>入室登録</h5>';
 					messageLine.innerHTML = '<p>入室登録を行います。よろしいですか?</p>';
 				}else{
-					messageTitle.innerHTML = '<h5>退室登録</h5>';
-					messageLine.innerHTML = '<div class="input-field col s12"><select name="workTime" required><option value="" disabled selected>ここをクリックして取組時間を選択して下さい。</option><option value="0:00">活動なし</option><option value="2:00">2時間（1コマ）</option><option value="4:00">4時間（2コマ）</option><option value="6:00">6時間（3コマ）</option><option value="8:00">8時間（4コマ）</option></select></div><div class="typeSelect"><p><label><input type="checkbox" class="filled-in" name="workType[]" value="文献調査"/><span>文献調査</span></label></p><p><label><input type="checkbox" checked="checked" class="filled-in" name="workType[]" value="作業"/><span>作業</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="実験"/><span>実験</span></label></p><p><label><input type="checkbox" class="filled-in"  name="workType[]" value="データ整理"/><span>データ整理</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="資料作成"/><span>資料作成</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ディスカッション"/><span>ディスカッション</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ゼミ"/><span>ゼミ</span></label></p></div>';
+					messageTitle.innerHTML = '<h5>退室登録</h5><br>';
+					messageLine.innerHTML = '<div class="input-field col s12"><input type="text" class="timepicker" id="workTime" name="workTime" required><label for="workTime" class="">ここをクリックして取組時間を選択</label></div><div class="typeSelect"><p><label><input type="checkbox" class="filled-in" name="workType[]" value="文献調査"/><span>文献調査</span></label></p><p><label><input type="checkbox" checked="checked" class="filled-in" name="workType[]" value="作業"/><span>作業</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="実験"/><span>実験</span></label></p><p><label><input type="checkbox" class="filled-in"  name="workType[]" value="データ整理"/><span>データ整理</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="資料作成"/><span>資料作成</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ディスカッション"/><span>ディスカッション</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ゼミ"/><span>ゼミ</span></label></p></div>';
 					$(document).ready(function(){
 						$('select').formSelect();
+					});
+					$(document).ready(function(){
+						$('.timepicker').timepicker({
+							defaultTime: "0:00",
+							twelveHour: false
+						});
 					});
 				}
                         }
@@ -155,3 +162,4 @@ require_once('./myid.php');
 		</footer>
 	</body>
 </html>
+
