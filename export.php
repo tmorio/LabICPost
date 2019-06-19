@@ -11,7 +11,6 @@ require_once './myid.php'; ?>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('.modal').modal();
@@ -19,9 +18,8 @@ require_once './myid.php'; ?>
 		</script>
 	</head>
 	<body>
-	<?php require_once './header.php'; ?>
+	<?php require_once './wbheader.php'; ?>
 	<div class="deviceAdd">
-		<!-- 設定分類一覧表示 -->
 		<div class="wizardInfo">
 	<?php
 		echo '
@@ -60,6 +58,24 @@ require_once './myid.php'; ?>
 				<p>月範囲を以下から選択して下さい。</p>
 				<div class="row">
 					<input type="hidden" id="userid" name="userid" value="" required>
+					<div class="input-field col s12">
+						<select name="month" required>
+							<option value="" disabled selected>ここをクリックして選択して下さい。</option>
+							<option value="6">2019 / 6</option>
+						</select>
+					</div>
+				</div>
+				<a class="waves-effect waves-light modal-close btn red left"><i class="material-icons left">close</i>キャンセル</a>
+				<button class="btn waves-effect waves-light right" type="submit" id="login" name="login"><i class="material-icons left">check</i>ダウンロード</button><br>
+			</div>
+		</form>
+	</div>
+	<div id="allDownload" class="modal">
+		<form action="makeallcsv.php" method="POST">
+			<div class="modal-content">
+				<h3>ダウンロードする範囲の選択</h3>
+				<p>月範囲を以下から選択して下さい。</p>
+				<div class="row">
 					<div class="input-field col s12">
 						<select name="month" required>
 							<option value="" disabled selected>ここをクリックして選択して下さい。</option>

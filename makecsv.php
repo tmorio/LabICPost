@@ -27,7 +27,7 @@ $stmt->bindParam(':userID', $_POST['userid'], PDO::PARAM_STR);
 $stmt->bindParam(':selectMonth', $_POST['month'], PDO::PARAM_STR);
 $stmt->execute();
 
-$filenameData = $userInfo['Name'] . '('  . date("YmdHis") . ')';
+$filenameData = md5(uniqid(rand(), true));
 
 $fileinput = "取組日,曜日,入室時刻,退室時刻,取組時間,取組内容\r\n";
 $week = array( "日", "月", "火", "水", "木", "金", "土" );
