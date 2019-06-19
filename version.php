@@ -1,3 +1,5 @@
+<?php require_once('./myid.php'); ?>
+
 <!doctype html>
 <html>
 	<head>
