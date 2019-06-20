@@ -32,7 +32,7 @@ if(!$result){
 $zipFiles = [];
 $filesPath = [];
 foreach($userCounter as $userIDNum){
-	$query = "SELECT * FROM History WHERE UserID = :userID AND Month = :selectMonth";
+	$query = "SELECT * FROM History WHERE UserID = :userID AND Month = :selectMonth ORDER BY Date";
 
 	$stmt = $dbh->prepare($query);
 	$stmt->bindParam(':userID', $userIDNum['ID'], PDO::PARAM_STR);
@@ -41,6 +41,8 @@ foreach($userCounter as $userIDNum){
 
 	$filenameData = $userIDNum['Name'];
 	$outputName = md5(uniqid(rand(), true));
+	$dayCounter = 0;
+	$workTimes = 0;
 
 	$fileinput = "取組日,曜日,入室時刻,退室時刻,取組時間,取組内容\r\n";
 	$week = array( "日", "月", "火", "水", "木", "金", "土" );
@@ -52,9 +54,11 @@ foreach($userCounter as $userIDNum){
 		$workTimeFile = substr($data['WorkTime'], 0,5);
 
 		$fileinput = $fileinput . $inputDate . "," . $weekJP . "," . $inDateFile . "," . $outDateFile . "," . $workTimeFile  . ","  . $data['WorkType']  . "\r\n";
+		$workTimes = $workTimes + substr($data['WorkTime'], 0,2);
+		$dayCounter++;
 	}
 
-//	$filenameData = mb_convert_encoding($filenameData, "SJIS", "UTF-8");
+	$fileinput = $fileinput . "\r\n" . "合計日数," . $dayCounter . "日,,合計時間," . $workTimes . "h\r\n";
 	$fileinput = mb_convert_encoding($fileinput, "SJIS", "UTF-8");
 
 	$fpath = 'export/' . $outputName . '.csv';

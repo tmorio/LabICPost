@@ -5,12 +5,13 @@ require_once './myid.php'; ?>
 	<head>
 		<meta charset="UTF-8">
 		<title>LabTimes - Export</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('.modal').modal();
@@ -61,6 +62,8 @@ require_once './myid.php'; ?>
 					<div class="input-field col s12">
 						<select name="month" required>
 							<option value="" disabled selected>ここをクリックして選択して下さい。</option>
+							<option value="4">2019 / 4</option>
+							<option value="5">2019 / 5</option>
 							<option value="6">2019 / 6</option>
 						</select>
 					</div>
@@ -79,6 +82,8 @@ require_once './myid.php'; ?>
 					<div class="input-field col s12">
 						<select name="month" required>
 							<option value="" disabled selected>ここをクリックして選択して下さい。</option>
+							<option value="4">2019 / 4</option>
+							<option value="5">2019 / 5</option>
 							<option value="6">2019 / 6</option>
 						</select>
 					</div>

@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>LabTimes - Export</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,10 +30,10 @@
 				<h3>Version Infomation</h3>
 				<div class="valign-wrapper">
 					<img class="logo-image" src="img/logo.png"><br>
-					<h4>Ver1.5.1</h4>
+					<h4>Ver1.5.2</h4>
 				</div>
 				<b>
-					Release: 2019/06/19<br>
+					Release: 2019/06/20<br>
 					Host Type: Install<br><br>
 					Organization Name: <?php echo LAB_NAME; ?><br>
 				</b>
