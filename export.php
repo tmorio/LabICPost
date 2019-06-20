@@ -5,7 +5,7 @@ require_once './myid.php'; ?>
 	<head>
 		<meta charset="UTF-8">
 		<title>LabTimes - Export</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
