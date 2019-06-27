@@ -25,7 +25,7 @@ require_once('./myid.php');
 	<?php
 	switch($_GET['step']){
 		default:
-			echo '<h3>Welcome to ' . LAB_NAME  . '!</h3>研究者名を選択して下さい。<br>';
+			echo '<h3>Welcome to ' . htmlspecialchars(LAB_NAME, ENT_QUOTES, 'UTF-8')  . '!</h3><b>研究者名を選択して下さい。</b><br><br>';
 			$strcode = array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8mb4'");
 			try {
 				$dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_ID, DB_PASS, $strcode);
@@ -37,7 +37,8 @@ require_once('./myid.php');
 			$stmt = $dbh->prepare($query);
 			$stmt->execute();
 			foreach($stmt as $data){
-				echo '<a class="modal-trigger" href="#nowAccount" onclick="selectUser(' . $data['ID'] .', ' . $data['Status'] . ',\'' . $data['InTime'] . '\')">';
+				$inDateFile = substr($data['InTime'], 0,5);
+				echo '<a class="modal-trigger" href="#nowAccount" onclick="selectUser(' . $data['ID'] .', ' . $data['Status'] . ',\'' . $inDateFile . '\',\'' . $data['Name'] . '\')">';
 				if($data['Status'] == 0){
 					echo '<div class="cardProfileOn"><div class="boxProfile">';
 				}else{
@@ -46,9 +47,9 @@ require_once('./myid.php');
 				if(empty($data['PhotoName'])){
 					echo '<img src="img/default.jpg" class="iconBox">';
 				}else{
-					echo '<img src="img/users/' . $data['PhotoName'] . '.jpg" class="iconBox">';
+					echo '<img src="img/users/' . htmlspecialchars($data['PhotoName'], ENT_QUOTES, 'UTF-8') . '.jpg" class="iconBox">';
 				}
-				echo '<div><p>&nbsp;&nbsp;' . $data['Name'] . '</p></div>';
+				echo '<div><p>&nbsp;&nbsp;' . htmlspecialchars($data['Name'], ENT_QUOTES, 'UTF-8') . '</p></div>';
 				echo '</div></div></a>';
 			}
 			break;
@@ -121,10 +122,10 @@ require_once('./myid.php');
 	<div id="nowAccount" class="modal">
 		<form action="?step=2" method="POST">
 			<div class="modal-content">
-					<div id="messageTitle"></div>
-					<div id="messageLine"></div>
+					<div id="messageTitle" class="textBlack"></div>
+					<div id="messageLine" class="textBlack"></div>
 					<input type="hidden" id="userID" name="userID" value="" required>
-					<input type="hidden" id="userStatus" name="userStatus" value="" required>
+					<input type="hidden" id="userStatus" name="userStatus" value="" required><br>
 				<a class="waves-effect waves-light modal-close btn red left"><i class="material-icons left">close</i>キャンセル</a>
 				<button class="btn waves-effect waves-light right" type="submit" id="login" name="login"><i class="material-icons left">check</i>登録</button><br>
 			</div>
@@ -132,24 +133,23 @@ require_once('./myid.php');
 	</div>
 		<footer>
 			<script>
-                        function selectUser(userID, statusCode, inTime){
-                                document.getElementById( "userID" ).value = userID;
-				document.getElementById( "userStatus" ).value = statusCode;
-				var messageTitle = document.getElementById('messageTitle');
-				var messageLine = document.getElementById('messageLine');
-				if(statusCode == 0){
-					messageTitle.innerHTML = '<h5>入室登録</h5>';
-					messageLine.innerHTML = '<p>入室登録を行います。よろしいですか?</p>';
-				}else{
-					messageTitle.innerHTML = '<h5>退室登録</h5>';
-					messageLine.innerHTML = '入室時刻 : ' + inTime + '<br><div class="input-field"><select name="workTime" required><option value="" disabled selected>ここをクリックして取組時間を選択して下さい。</option><option value="0:00">活動なし</option><option value="2:00">2時間（1コマ）</option><option value="4:00">4時間（2コマ）</option><option value="6:00">6時間（3コマ）</option><option value="8:00">8時間（4コマ）</option></select></div><div class="typeSelect"><p><label><input type="checkbox" class="filled-in" name="workType[]" value="文献調査"/><span>文献調査</span></label></p><p><label><input type="checkbox" checked="checked" class="filled-in" name="workType[]" value="作業"/><span>作業</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="実験"/><span>実験</span></label></p><p><label><input type="checkbox" class="filled-in"  name="workType[]" value="データ整理"/><span>データ整理</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="資料作成"/><span>資料作成</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ディスカッション"/><span>ディスカッション</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ゼミ"/><span>ゼミ</span></label></p></div>';
-					$(document).ready(function(){
-						$('select').formSelect();
-					});
+				function selectUser(userID, statusCode, inTime, userName){
+					document.getElementById( "userID" ).value = userID;
+					document.getElementById( "userStatus" ).value = statusCode;
+					var messageTitle = document.getElementById('messageTitle');
+					var messageLine = document.getElementById('messageLine');
+					if(statusCode == 0){
+						messageTitle.innerHTML = '<h5>' + userName + 'さん、ようこそ！</h5>';
+						messageLine.innerHTML = '<p>入室登録を行います。よろしいですか?</p>';
+					}else{
+						messageTitle.innerHTML = '<h5>退室登録</h5>';
+						messageLine.innerHTML = '<div class="input-field"><select name="workTime" required><option value="" disabled selected>取組時間を選択して下さい。（今日の入室時刻 : ' + inTime + '）</option><option value="0:00">活動なし</option><option value="2:00">2時間（1コマ）</option><option value="4:00">4時間（2コマ）</option><option value="6:00">6時間（3コマ）</option><option value="8:00">8時間（4コマ）</option></select></div><div class="typeSelect"><p><label><input type="checkbox" class="filled-in" name="workType[]" value="文献調査"/><span>文献調査</span></label></p><p><label><input type="checkbox" checked="checked" class="filled-in" name="workType[]" value="作業"/><span>作業</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="実験"/><span>実験</span></label></p><p><label><input type="checkbox" class="filled-in"  name="workType[]" value="データ整理"/><span>データ整理</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="資料作成"/><span>資料作成</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ディスカッション"/><span>ディスカッション</span></label></p><p><label><input type="checkbox" class="filled-in" name="workType[]" value="ゼミ"/><span>ゼミ</span></label></p></div>';
+						$(document).ready(function(){
+							$('select').formSelect();
+						});
+					}
 				}
-                        }
 			</script>
 		</footer>
 	</body>
 </html>
-

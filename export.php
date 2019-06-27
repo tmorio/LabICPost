@@ -11,7 +11,6 @@ require_once './myid.php'; ?>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/footerFixed.js"></script>
 		<script>
 			$(document).ready(function(){
 				$('.modal').modal();
@@ -24,8 +23,8 @@ require_once './myid.php'; ?>
 		<div class="wizardInfo">
 	<?php
 		echo '
-			<h3>Export to CSV</h3>
-			記録ダウンロードする対象ユーザを選択して下さい。<br>
+			<h3>Export</h3>
+			記録をダウンロードする対象ユーザを選択して下さい。<br>
 		';
 		$strcode = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET 'utf8mb4'");
 		try {
@@ -43,9 +42,9 @@ require_once './myid.php'; ?>
 			if (empty($data['PhotoName'])) {
 				echo '<img src="img/default.jpg" class="iconBox">';
 			} else {
-				echo '<img src="img/users/'.$data['PhotoName'].'.jpg" class="iconBox">';
+				echo '<img src="img/users/'. htmlspecialchars($data['PhotoName'], ENT_QUOTES, 'UTF-8') . '.jpg" class="iconBox">';
 			}
-			echo '<div><p>  '.$data['Name'].'</p></div>';
+			echo '<div><p>  ' . htmlspecialchars($data['Name'], ENT_QUOTES, 'UTF-8') . '</p></div>';
 			echo '</div></div></a>';
 		}
 	?>
@@ -53,14 +52,14 @@ require_once './myid.php'; ?>
 		</div>
 	</div>
 	<div id="nowAccount" class="modal">
-		<form action="makecsv.php" method="POST">
-			<div class="modal-content">
+		<form action="makesheet.php" method="POST">
+			<div class="modal-content textBlack">
 				<h3>ダウンロードする範囲の選択</h3>
 				<p>月範囲を以下から選択して下さい。</p>
 				<div class="row">
 					<input type="hidden" id="userid" name="userid" value="" required>
 					<div class="input-field col s12">
-						<select name="month" required>
+						<select class="browser-default" name="month" required>
 							<option value="" disabled selected>ここをクリックして選択して下さい。</option>
 							<option value="4">2019 / 4</option>
 							<option value="5">2019 / 5</option>
@@ -74,13 +73,13 @@ require_once './myid.php'; ?>
 		</form>
 	</div>
 	<div id="allDownload" class="modal">
-		<form action="makeallcsv.php" method="POST">
-			<div class="modal-content">
+		<form action="makeallsheet.php" method="POST">
+			<div class="modal-content textBlack">
 				<h3>ダウンロードする範囲の選択</h3>
 				<p>月範囲を以下から選択して下さい。</p>
 				<div class="row">
 					<div class="input-field col s12">
-						<select name="month" required>
+						<select class="browser-default" name="month" required>
 							<option value="" disabled selected>ここをクリックして選択して下さい。</option>
 							<option value="4">2019 / 4</option>
 							<option value="5">2019 / 5</option>
